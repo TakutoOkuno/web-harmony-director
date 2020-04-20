@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import KeyBoard from './components/KeyBoard';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #444;
+`
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Wrapper>
+      <KeyBoard />
+    </Wrapper>
   </React.StrictMode>,
   document.getElementById('root')
 );
