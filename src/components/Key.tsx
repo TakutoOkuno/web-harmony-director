@@ -20,7 +20,7 @@ const Key: React.FC<KeyProps> = ({ standardPitch = 442.0, midiKey }) => {
     const buildOscillator = () => {
         const ctx = new AudioContext();
         const oscillatorNode = ctx.createOscillator()
-        oscillatorNode.type = "sine"
+        oscillatorNode.type = "triangle"
         oscillatorNode.frequency.value = freq
         oscillatorNode.connect(ctx.destination)
         setOscillator(oscillatorNode)
@@ -31,19 +31,29 @@ const Key: React.FC<KeyProps> = ({ standardPitch = 442.0, midiKey }) => {
     const play = () => {
         if (oscillator === undefined) return
         if (!active) {
-            oscillator.start()
-            setActive(true)
-            console.log("started")
+            start()
         } else {
-            oscillator.stop()
-            setActive(false)
-            buildOscillator()
-            console.log("ended")
+            stop()
         }
     }
 
+    const start = () => {
+        if (oscillator === undefined || active) return
+        oscillator.start()
+        setActive(true)
+        console.log("started")
+    }
+
+    const stop = () => {
+        if (oscillator === undefined || !active) return
+        oscillator.stop()
+        setActive(false)
+        buildOscillator()
+        console.log("stopped")
+    }
+
     return <>
-        <KeyWrapper onClick={play}/>
+        <KeyWrapper onMouseDown={play} onMouseUp={stop} />
     </>
 }
 
