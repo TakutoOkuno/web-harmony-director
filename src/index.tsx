@@ -9,14 +9,22 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  align-content: space-between;
+  flex-direction: column;
   height: 100vh;
   background-color: #444;
+`
+
+const Button = styled.button`
+  margin-top: 20px;
+  background-color: #d1d1d1;
 `
 
 ReactDOM.render(
   <React.StrictMode>
     <Wrapper>
       <KeyBoard />
+      <Button>音を止める</Button>
     </Wrapper>
   </React.StrictMode>,
   document.getElementById('root')
