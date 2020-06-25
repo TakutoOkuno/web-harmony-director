@@ -7,13 +7,16 @@ const KeyWrapper = styled.div`
   cursor: pointer;
 `;
 
-type KeyProps = {
+export type KeyProps = {
   standardPitch?: number;
   midiKey: number;
+  cent?: number;
+  operationKey?: string;
+  stopRef: React.MutableRefObject<(() => void) | null>
 };
 
-const Key: React.FC<KeyProps> = ({ standardPitch = 442.0, midiKey }) => {
-  const freq = standardPitch * Math.pow(2.0, (midiKey - 69.0) / 12.0);
+const Key: React.FC<KeyProps> = ({ standardPitch = 442.0, midiKey, cent = 0, stopRef }) => {
+  const freq = standardPitch * Math.pow(2.0, (midiKey - 69.0) / 12.0) * (2 ** (cent / 1200));
   const [active, setActive] = useState(false);
   const [oscillator, setOscillator] = useState<OscillatorNode>();
 
@@ -51,6 +54,10 @@ const Key: React.FC<KeyProps> = ({ standardPitch = 442.0, midiKey }) => {
     buildOscillator();
     console.log("stopped");
   };
+
+  useEffect(() => {
+    stopRef.current = stop;
+  }, [stopRef, stop]);
 
   return (
     <>

@@ -15,16 +15,16 @@ const Wrapper = styled.div`
   background-color: #444;
 `
 
-const Button = styled.button`
-  margin-top: 20px;
-  background-color: #d1d1d1;
-`
+// const Button = styled.button`
+//   margin-top: 20px;
+//   background-color: #d1d1d1;
+// `
 
 ReactDOM.render(
   <React.StrictMode>
     <Wrapper>
       <KeyBoard />
-      <Button>音を止める</Button>
+      {/* <Button>音を止める</Button> */}
     </Wrapper>
   </React.StrictMode>,
   document.getElementById('root')

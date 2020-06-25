@@ -1,4 +1,4 @@
-import Key from "./Key";
+import Key, { KeyProps } from "./Key";
 import React from "react";
 import styled from "styled-components";
 
@@ -11,10 +11,10 @@ const BlackKeyWrapper = styled.div`
   z-index: 2;
 `;
 
-const BlackKey: React.FC<{ midiKey: number }> = ({ midiKey }) => (
+const BlackKey: React.FC<KeyProps> = (props) => (
   <>
     <BlackKeyWrapper>
-      <Key midiKey={midiKey} />
+      <Key {...props} />
     </BlackKeyWrapper>
   </>
 );

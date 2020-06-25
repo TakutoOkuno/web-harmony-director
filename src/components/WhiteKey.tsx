@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Key from "./Key";
+import Key, { KeyProps } from "./Key";
 import React from "react";
 
 const WhiteKeyWrapper = styled.div`
@@ -9,10 +9,10 @@ const WhiteKeyWrapper = styled.div`
   background-color: white;
 `;
 
-const WhiteKey: React.FC<{ midiKey: number }> = ({ midiKey }) => (
+const WhiteKey: React.FC<KeyProps> = (props) => (
   <>
     <WhiteKeyWrapper>
-      <Key midiKey={midiKey} />
+      <Key {...props} />
     </WhiteKeyWrapper>
   </>
 );
